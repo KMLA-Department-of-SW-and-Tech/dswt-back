@@ -2,6 +2,7 @@ import express from "express"
 import type { Request, Response, NextFunction } from "express"
 import dotenv from "dotenv"
 import router from "./routes"
+import projectsRouter from "./routes/projects"
 import mongoose from "mongoose"
 
 dotenv.config()
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true }))
 
 // 라우트 설정
 app.use("/", router)
+app.use("/projects/", projectsRouter)
 
 // 에러 핸들링
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
