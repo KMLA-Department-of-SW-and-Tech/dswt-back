@@ -2,13 +2,13 @@ import Project from "../models/project"
 import { Request, Response, RequestHandler } from "express"
 import { body, validationResult } from "express-validator"
 
-export const getProjects = async (
+export const getProject = async (
   req: Request<{ id: string }>,
   res: Response,
 ) => {
   try {
-    const projects = await Project.find({ id: req.params.id })
-    res.status(200).json(projects)
+    const project = await Project.find({ id: req.params.id })
+    res.status(200).json(project)
   } catch (error: unknown) {
     if (error instanceof Error) {
       res.status(500).json({ message: error.message })
