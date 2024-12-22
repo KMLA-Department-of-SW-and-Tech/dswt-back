@@ -2,6 +2,19 @@ import Project from "../models/project"
 import { Request, Response, RequestHandler } from "express"
 import { body, validationResult } from "express-validator"
 
+export const getProjectDescriptions = async (req: Request, res: Response) => {
+  try {
+    const projectDescriptions = await Project.find({}, "title shortDescription")
+    res.status(200).json(projectDescriptions)
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      res.status(500).json({ message: error.message })
+    } else {
+      res.status(500).json({ message: "An unknown error occurred" })
+    }
+  }
+}
+
 export const getProject = async (
   req: Request<{ id: string }>,
   res: Response,
