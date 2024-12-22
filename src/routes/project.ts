@@ -1,6 +1,6 @@
 import express from "express"
 import {
-  getProjects,
+  getProject,
   createProject,
   updateProject,
   deleteProject,
@@ -8,7 +8,12 @@ import {
 
 const router = express.Router()
 
-router.route("/:id").get(getProjects).put(updateProject).delete(deleteProject)
+router.route("/:id").get(getProject).put(updateProject).delete(deleteProject)
+router
+  .route("/:id/detail")
+  .get(getProject)
+  .put(updateProject)
+  .delete(deleteProject)
 
 router.post("/", createProject)
 export default router
