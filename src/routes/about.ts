@@ -1,7 +1,6 @@
 import express from "express"
 import {
     getAbout,
-    createAbout,
     updateAbout,
     deleteAbout
 } from "../controllers/about"
@@ -15,5 +14,4 @@ router
     .put(updateAbout)
     .delete(deleteAbout)
 
-router.post("/", createAbout)
 export default router
