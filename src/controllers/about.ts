@@ -4,29 +4,13 @@ import { body, validationResult } from "express-validator"
 
 export const getIntroduction = async (req: Request, res: Response) => {
     try {
-        const aboutInstruction = await About.find({}, "instruction")
-        res.status(200).json(aboutInstruction)
+        const aboutIntroduction = await About.find({}, "introduction")
+        res.status(200).json(aboutIntroduction)
     } catch (error: unknown) {
         if (error instanceof Error) {
             res.status(500).json({ message: error.message })
         } else {
             res.status(500).json({ message: "An unknown error occurred" })
-        }
-    }
-}
-
-export const getAbout = async (
-    req: Request,
-    res: Response
-) => {
-    try {
-        const about = await About.find({})
-        res.status(200).json(about)
-    } catch (error: unknown) {
-        if (error instanceof Error) {
-            res.status(500).json({ message: error.message })
-        } else {
-            res.status(500).json({ message: "An unknown error occured"})
         }
     }
 }
@@ -42,8 +26,8 @@ export const updateAbout = [
         }
 
         try {
-            const { instruction } = req.body
-            const updateData = { instruction }
+            const { introduction } = req.body
+            const updateData = { introduction }
 
             const updatedAbout = await About.findOneAndUpdate(
                 {},
@@ -65,7 +49,7 @@ export const updateAbout = [
             }
         }
     }
-] as RequestHandler<{ id: string }>[]
+] as RequestHandler[]
 
 export const deleteAbout = async (
     req: Request,
