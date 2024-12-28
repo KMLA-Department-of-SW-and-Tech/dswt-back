@@ -1,16 +1,16 @@
 import express from "express"
 import {
-    getAbout,
+    getIntroduction,
     updateAbout,
     deleteAbout
 } from "../controllers/about"
 
 const router = express.Router()
 
-router.route("/:id").get(getAbout).put(updateAbout).delete(deleteAbout)
+router.route("/:id").get(getIntroduction).put(updateAbout).delete(deleteAbout)
 router
     .route("/:id/detail")
-    .get(getAbout)
+    .get(getIntroduction)
     .put(updateAbout)
     .delete(deleteAbout)
 
