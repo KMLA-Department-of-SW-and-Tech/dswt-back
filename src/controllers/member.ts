@@ -28,7 +28,7 @@ export const updateMember = [
         { new: true },
       )
       if (!updatedMember) {
-        return res.status(404).json({ message: "Member not found" })
+        res.status(404).json({ message: "Member not found" })
       }
       res.status(200).json(updatedMember)
     } catch (error: unknown) {
@@ -42,16 +42,21 @@ export const updateMember = [
 ] as RequestHandler<{ id: string }>[]
 
 // Delete member controller
-export const deleteMember = async (req: Request, res: Response) => {
-  const { id } = req.params
-
+export const deleteMember = async (
+  req: Request<{ id: string }>,
+  res: Response,
+) => {
   try {
-    const member = await Member.findByIdAndDelete(id)
-    if (!member) {
-      return res.status(404).json({ message: "Member not found" })
+    const deletedMember = await Member.findByIdAndDelete(req.params.id)
+    if (!deletedMember) {
+      res.status(404).json({ message: "Member not found" })
     }
     res.status(200).json({ message: "Member deleted successfully" })
-  } catch (error) {
-    res.status(500).json({ message: "Server error", error })
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      res.status(500).json({ message: error.message })
+    } else {
+      res.status(500).json({ message: "An unknown error occurred" })
+    }
   }
 }
