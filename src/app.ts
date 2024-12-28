@@ -7,6 +7,7 @@ import mongoose from "mongoose"
 dotenv.config()
 const app = express()
 const PORT = process.env.PORT || 3000
+const NODE_ENV = process.env.NODE_ENV || "development"
 
 // Mongoose 연결
 const dev_uri = "mongodb://localhost:27017/dwst_back"
@@ -28,6 +29,10 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   res.status(500).send("Something broke!")
 })
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`)
-})
+export default app
+
+if (NODE_ENV === "development") {
+  app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`)
+  })
+}

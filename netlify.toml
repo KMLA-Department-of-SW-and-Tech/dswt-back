@@ -1,0 +1,7 @@
+[functions]
+  external_node_modules = ["express"] # 외부 모듈 설정
+[[redirects]]
+  force = true
+  from = "/*"
+  status = 200
+  to = "/.netlify/functions/api/:splat"

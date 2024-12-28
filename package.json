@@ -10,11 +10,13 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@netlify/functions": "^3.0.0",
     "dotenv": "^16.4.5",
     "express": "^5.0.1",
     "express-validator": "^7.2.0",
     "firebase-admin": "^13.0.2",
-    "mongoose": "^8.9.2"
+    "mongoose": "^8.9.2",
+    "serverless-http": "^3.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.14.0",
