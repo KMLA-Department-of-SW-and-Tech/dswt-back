@@ -1,6 +1,7 @@
 import express from "express"
 import type { Request, Response } from "express"
 import projectRouter from "./project"
+import memberRouter from "./member"
 
 const router = express.Router()
 
@@ -21,5 +22,7 @@ router.delete("/", (req: Request, res: Response) => {
 })
 
 router.use("/projects", projectRouter)
+
+router.use("/members", memberRouter)
 
 export default router
