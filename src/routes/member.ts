@@ -9,11 +9,7 @@ import authenticateToken from "../middlewares/verifyToken"
 
 const router = express.Router()
 
-router
-  .route("/:id")
-  .get(getMember)
-  .put(authenticateToken, updateMember)
-  .delete(authenticateToken, deleteMember)
+router.route("/:id").get(getMember).put(authenticateToken, updateMember).delete(authenticateToken, deleteMember)
 
-router.post("/", createMember)
+router.post("/", authenticateToken, createMember)
 export default router
